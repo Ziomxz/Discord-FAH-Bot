@@ -33,7 +33,7 @@ bot.on('message', msg => {
   if (msg.content === 'help') {
     msg.channel.send(
 ` \`\`\`
-Alian Italian, Should be working
+Rock N Roll
 
 You need team number for the bot.
 Commands:
@@ -110,7 +110,14 @@ Commands:
 
   } else if (msg.content === 'fah-restart') {
     msg.channel.send('Shuting Down and Fetching files from GitHub');
-    exec('bash ../restart.sh');
+    exec('basg -c "../restart.sh"', (err, stdout, stderr) => {
+      if (err) {
+        msg.channel.send(`Error: ${err}`);
+      } else {
+        msg.channel.send(`STDOUT: ${stdout}`);
+        msg.channel.send(`STDERR: ${stderr}`);
+      }
+    });
     /*
     process.on('exit', function(data) {
       console.log(`Exiting`);
