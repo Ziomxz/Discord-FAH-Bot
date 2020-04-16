@@ -33,7 +33,7 @@ bot.on('message', msg => {
   if (msg.content === 'help') {
     msg.channel.send(
 ` \`\`\`
-Updated - Hurray!!!
+Stanley this is not the way
 
 You need team number for the bot.
 Commands:
