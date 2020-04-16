@@ -33,16 +33,13 @@ bot.on('message', msg => {
   if (msg.content === 'help') {
     msg.channel.send(
 ` \`\`\`
-Seven steps to Hell
-
-You need team number for the bot.
 Commands:
 "help" - Prints this message
 "setteam <team_number>" - Which team to track
 "team-stats" - Prints out summary of team progress
 "donors-stats" - Prints out team members scores
-"fah-restart" - Restart App with Latest Files
 \`\`\` `);
+// "fah-restart" - Restart App with Latest Files
 } else if (msg.content.slice(0,7) === 'setteam') {
     try {
       let teamNumber = Number(msg.content.replace('setteam ', ''))
@@ -118,11 +115,5 @@ Commands:
         console.log(`STDERR: ${stderr}`);
       }
     });
-    /*
-    process.on('exit', function(data) {
-      console.log(`Exiting`);
-    });
-    setTimeout(process.exit(0), 10000);
-    */
   }
 });
