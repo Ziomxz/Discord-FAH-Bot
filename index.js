@@ -6,7 +6,6 @@ const fetch = require('node-fetch');
 const columnify = require('columnify');
 const { exec } = require('child_process');
 
-
 const TEAM = {
   number: -1
 };
@@ -108,8 +107,10 @@ Commands:
 
   } else if (msg.content === 'fah-restart') {
     msg.channel.send('Shuting Down and Fetching files from GitHub');
-    exec('../restart.sh', (err, stdout, stderr) => {
-      console.log(`Error: ${err}`);
+    process.on('exit', function(data) {
+      console.log(`Exiting`);
+      exec('../restart.sh');
     });
+    process.exit(0);
   }
 });
