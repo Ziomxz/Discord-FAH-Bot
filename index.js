@@ -112,10 +112,10 @@ Commands:
     msg.channel.send('Shuting Down and Fetching files from GitHub');
     exec('bash -c "../restart.sh"', (err, stdout, stderr) => {
       if (err) {
-        msg.channel.send(`Error: ${err}`);
+        console.log(`Error: ${err}`);
       } else {
-        msg.channel.send(`STDOUT: ${stdout}`);
-        msg.channel.send(`STDERR: ${stderr}`);
+        console.log(`STDOUT: ${stdout}`);
+        console.log(`STDERR: ${stderr}`);
       }
     });
     /*
