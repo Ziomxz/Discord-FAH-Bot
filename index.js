@@ -33,7 +33,7 @@ bot.on('message', msg => {
   if (msg.content === 'help') {
     msg.channel.send(
 ` \`\`\`
-Yuri Yuri Yuri
+Seven steps to Hell
 
 You need team number for the bot.
 Commands:
