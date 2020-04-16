@@ -4,6 +4,7 @@ const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 const fetch = require('node-fetch');
 const columnify = require('columnify');
+const { exec } = require('child_process');
 
 
 const TEAM = {
@@ -38,6 +39,7 @@ Commands:
 "setteam <team_number>" - Which team to track
 "team-stats" - Prints out summary of team progress
 "donors-stats" - Prints out team members scores
+"fah-restart" - Restart App with Latest Files
 \`\`\` `);
 } else if (msg.content.slice(0,7) === 'setteam') {
     try {
@@ -102,5 +104,10 @@ Commands:
         msg.channel.send(`Error: Issue with request for team stats! \n${err}`)
       })
     }
+
+
+  } else if (msg.content === 'fah-restart') {
+    msg.channel.send('Shuting Down and Fetching files from GitHub')
+    exec('/bin/sh ../restart.sh')
   }
 });
