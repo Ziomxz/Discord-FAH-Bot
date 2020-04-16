@@ -105,12 +105,14 @@ Commands:
     }
 
 
-  } else if (msg.content === 'fah-restart') {
-    msg.channel.send('Shuting Down and Fetching files from GitHub');
+  } else if (msg.content === '-fah-restart') {
+    msg.channel.send('Shuting Down and Fetching files from GitHub')
+    exec('../restart.sh');
+    /*
     process.on('exit', function(data) {
       console.log(`Exiting`);
-      exec('../restart.sh');
     });
-    process.exit(0);
+    setTimeout(process.exit(0), 10000);
+    */
   }
 });
