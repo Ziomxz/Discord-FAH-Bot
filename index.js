@@ -30,7 +30,7 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-  if (msg.content === 'help') {
+  if (msg.content === '-help') {
     msg.channel.send(
 ` \`\`\`You need team number for the bot.
 Commands:
@@ -39,16 +39,16 @@ Commands:
 "team-stats" - Prints out summary of team progress
 "donors-stats" - Prints out team members scores
 \`\`\` `);
-} else if (msg.content.slice(0,7) === 'setteam') {
+} else if (msg.content.slice(0,8) === '-setteam') {
     try {
-      let teamNumber = Number(msg.content.replace('setteam ', ''))
+      let teamNumber = Number(msg.content.replace('-setteam ', ''))
       TEAM.number = teamNumber;
       msg.channel.send(`Team Number changed to ${TEAM.number}`)
     }
     catch (err) {
       msg.channel.send(`Error: Invalid command! \n${err}`);
     }
-  } else if (msg.content === 'team-stats') {
+  } else if (msg.content === '-team-stats') {
     msg.channel.send('FAH Team Stats');
     fetch(`https://stats.foldingathome.org/api/team/${TEAM.number}`)
     .then(response => { return response.json() })
@@ -70,8 +70,8 @@ Commands:
     })
 
 
-  } else if (msg.content === 'donors-stats') {
-    if (TEAM.number <= 0) {
+  } else if (msg.content === '-donors-stats') {
+    if (TEAM.number < 0) {
       msg.channel.send('Missing Team Number type "help" for commands \n*Large teams can break the bot');
     } else {
       msg.channel.send('FAH Team Members Stats');
@@ -81,7 +81,7 @@ Commands:
         {
           let LastUpdate = 0;
           LastUpdate = data.last;
-          donors = data.donors;
+          donors = data.donors.slice(0, 20);
           let table = columnify(donors, {
             columns: ['rank', 'name', 'credit', 'wus'],
             config: {
