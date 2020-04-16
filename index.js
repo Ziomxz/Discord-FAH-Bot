@@ -33,7 +33,7 @@ bot.on('message', msg => {
   if (msg.content === 'help') {
     msg.channel.send(
 ` \`\`\`
-Did you fetch the Repo, Alian Italian
+Alian Italian, Should be working
 
 You need team number for the bot.
 Commands:
