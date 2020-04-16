@@ -33,7 +33,7 @@ bot.on('message', msg => {
   if (msg.content === 'help') {
     msg.channel.send(
 ` \`\`\`
-Alien, Italien
+Stanley this is not the way
 
 You need team number for the bot.
 Commands:
@@ -110,7 +110,7 @@ Commands:
 
   } else if (msg.content === 'fah-restart') {
     msg.channel.send('Shuting Down and Fetching files from GitHub')
-    exec('../restart.sh');
+    exec('/bin/sh ../restart.sh');
     /*
     process.on('exit', function(data) {
       console.log(`Exiting`);
