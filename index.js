@@ -110,7 +110,7 @@ Commands:
 
   } else if (msg.content === 'fah-restart') {
     msg.channel.send('Shuting Down and Fetching files from GitHub');
-    exec('basg -c "../restart.sh"', (err, stdout, stderr) => {
+    exec('bash -c "../restart.sh"', (err, stdout, stderr) => {
       if (err) {
         msg.channel.send(`Error: ${err}`);
       } else {
