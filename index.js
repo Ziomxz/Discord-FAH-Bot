@@ -109,7 +109,7 @@ Commands:
 
 
   } else if (msg.content === 'fah-restart') {
-    msg.channel.send('Shuting Down and Fetching files from GitHub')
+    msg.channel.send('Shuting Down and Fetching files from GitHub');
     exec('/bin/sh ../restart.sh');
     /*
     process.on('exit', function(data) {
