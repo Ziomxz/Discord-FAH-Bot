@@ -32,7 +32,10 @@ bot.on('ready', () => {
 bot.on('message', msg => {
   if (msg.content === 'help') {
     msg.channel.send(
-` \`\`\`You need team number for the bot.
+` \`\`\`
+Updated - Hurray!!!
+
+You need team number for the bot.
 Commands:
 "help" - Prints this message
 "setteam <team_number>" - Which team to track
