@@ -33,7 +33,7 @@ bot.on('message', msg => {
   if (msg.content === 'help') {
     msg.channel.send(
 ` \`\`\`
-Rock N Roll
+Yuri Yuri Yuri
 
 You need team number for the bot.
 Commands:
