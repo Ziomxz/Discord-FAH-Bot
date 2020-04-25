@@ -1,4 +1,7 @@
+node_modules/
 codebeautify.txt
 Path.txt
 .env
 test.js
+RestartShell.txt
+ActualRestartShell.txt

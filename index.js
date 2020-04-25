@@ -7,7 +7,7 @@ const columnify = require('columnify');
 const { exec } = require('child_process');
 
 const TEAM = {
-  number: -1
+  number: 0
 };
 
 const teamStats = [{
@@ -72,37 +72,33 @@ Commands:
 
 
   } else if (msg.content === 'donors-stats') {
-    if (TEAM.number < 0) {
-      msg.channel.send('Missing Team Number type "help" for commands \n*Large teams can break the bot');
-    } else {
-      msg.channel.send('FAH Team Members Stats');
-      fetch(`https://stats.foldingathome.org/api/team/${TEAM.number}`)
-      .then(response => { return response.json() })
-      .then(data =>
-        {
-          let LastUpdate = 0;
-          LastUpdate = data.last;
-          donors = data.donors.slice(0, 20);
-          let table = columnify(donors, {
-            columns: ['rank', 'name', 'credit', 'wus'],
-            config: {
-              rank: {
-                align: 'right'
-              },
-              credit: {
-                align: 'right'
-              },
-              wus: {
-                align: 'right'
-              }
+    msg.channel.send('FAH Team Members Stats');
+    fetch(`https://stats.foldingathome.org/api/team/${TEAM.number}`)
+    .then(response => { return response.json() })
+    .then(data =>
+      {
+        let LastUpdate = 0;
+        LastUpdate = data.last;
+        donors = data.donors.slice(0, 20);
+        let table = columnify(donors, {
+          columns: ['rank', 'name', 'credit', 'wus'],
+          config: {
+            rank: {
+              align: 'right'
+            },
+            credit: {
+              align: 'right'
+            },
+            wus: {
+              align: 'right'
             }
-          });
-          msg.channel.send(`Last Update: ${LastUpdate} \n \`\`\`${table}\`\`\` `);
-        }
-      ).catch(err => {
-        msg.channel.send(`Error: Issue with request for team stats! \n${err}`)
-      })
-    }
+          }
+        });
+        msg.channel.send(`Last Update: ${LastUpdate} \n \`\`\`${table}\`\`\` `);
+      }
+    ).catch(err => {
+      msg.channel.send(`Error: Issue with request for team stats! \n${err}`)
+    })
 
 
   } else if (msg.content === 'fah-restart') {
