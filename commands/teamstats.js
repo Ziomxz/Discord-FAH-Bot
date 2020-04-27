@@ -2,22 +2,40 @@ const columnify = require('columnify');
 
 module.exports = {
   name: 'team-stats',
-  description: 'Print Team Statistics',
+  description: 'Show Team Statistics',
   execute(msg, args, fetch, TEAM) {
-    msg.channel.send('FAH Team Stats');
+    msg.channel.send('FAH Team Statistics');
     fetch(`https://stats.foldingathome.org/api/team/${TEAM.number}`)
     .then(response => { return response.json() })
     .then(data =>
       {
-        TEAM.team.LastUpdate = data.last;
+        let LastUpdate = 0;
+        LastUpdate = data.last;
         TEAM.team.name = data.name;
         TEAM.team.rank = Number(data.rank);
         TEAM.team.credit = Number(data.credit);
         TEAM.team.wus = Number(data.wus);
-        let table = columnify([ TEAM.team ], {            // Row made of one team
-          columns: ['rank', 'name', 'credit', 'wus']
-        })
-        msg.channel.send(`Last Update: ${TEAM.team.LastUpdate} \n\`\`\`${table}\`\`\` `);
+
+        TEAM.donors = data.donors.slice(0, 20);
+
+        let table = columnify([ TEAM.team , {} ].concat(TEAM.donors), {
+          columns: ['rank', 'name', 'credit', 'wus'],
+          config: {
+            rank: {
+              align: 'right'
+            },
+            credit: {
+              align: 'right'
+            },
+            wus: {
+              align: 'right'
+            }
+          }
+        });
+        msg.channel.send(`Last Update: ${LastUpdate} \n
+\`\`\`Team Number : ${TEAM.number}\n
+${table}
+\`\`\` `);
       }
     )
     .catch(err => {

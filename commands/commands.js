@@ -4,7 +4,6 @@ module.exports = {
   Help: require('./help.js'),
   SetTeam: require('./setteam.js'),
   TeamStats: require('./teamstats.js'),
-  DonorsStats: require('./donorsstats.js'),
   Restart: {
     name: 'fah-restart',
     description: 'Update Files',
